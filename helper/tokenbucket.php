@@ -7,6 +7,7 @@
  * Instances of the class have a persistent storage, an identifier for the bucket, a
  * maximum capacity of that bucket, and a fill rate defined as the number of tokens
  * per second that get added to the bucket.
+ * Code from: https://ryanbritton.com/2016/11/rate-limiting-in-php-with-token-bucket/
  */
 class TokenBucket
 {

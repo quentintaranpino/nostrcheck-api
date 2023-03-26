@@ -12,6 +12,12 @@ The connection to the rest of the API is made through this URL:
 https://nostrcheck.me/api/media.php
 ```
 
+For testing purposes you can connect throught this URL:
+
+```html
+https://nostrcheck.me/api/test.php
+```
+
 ## Fields
 
 The POST request sent by the remote server requires this fields:
@@ -129,7 +135,7 @@ These are the requirements for a file to be uploaded and processed by the API.
 | Max filesize | 4 MB |
 | --- | --- |
 | Max request | 5 per day (public apikey) |
-| Filetypes | jpg, jpeg, gif, png, webp, mp3, mp4, webm, mpeg |
+| Filetypes | jpg, jpeg, gif, png, webp, mp3, mp4, webm, mpeg, mov |
 
 ## File processing
 

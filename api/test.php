@@ -227,7 +227,7 @@ if($compressedImage){
 	if($result)
 	{
 		unlink($tempPath); 
-		echo json_encode(array("apikey" => $remoteapikey, "request" => $remoteipaddr, "filesize" => $fileSize,"message" => "image uploaded successfully", "status" => true, "type" => $uploadtype, "URL" => $fileURL));
+		echo json_encode(array("apikey" => $remoteapikey, "request" => $remoteipaddr, "filesize" => $fileSize,"message" => "Media uploaded successfully", "status" => true, "type" => $uploadtype, "URL" => $fileURL));
 		exit();
 	}else{
 		unlink($tempPath); 

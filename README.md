@@ -129,7 +129,7 @@ These are the requirements for a file to be uploaded and processed by the API.
 | Max filesize | 4 MB |
 | --- | --- |
 | Max request | 5 per day (public apikey) |
-| Filetypes | jpg, jpeg, gif, png, webp, mp3, mp4, webm, mpeg |
+| Filetypes | jpg, jpeg, gif, png, webp, mp3, mp4, webm, mpeg, mov |
 
 ## File processing
 

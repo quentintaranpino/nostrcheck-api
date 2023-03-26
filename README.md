@@ -12,6 +12,12 @@ The connection to the rest of the API is made through this URL:
 https://nostrcheck.me/api/media.php
 ```
 
+For testing purposes you can connect throught this URL:
+
+```html
+https://nostrcheck.me/api/test.php
+```
+
 ## Fields
 
 The POST request sent by the remote server requires this fields:

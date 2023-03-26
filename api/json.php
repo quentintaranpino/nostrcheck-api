@@ -2,7 +2,7 @@
 
 /**
  *
- * @About:      Json nostr generator
+ * @About:      nostr.json automatic generator
  * @File:       json.php
  * @Date:       20032023
  * @Version:    0.1.1

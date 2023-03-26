@@ -1,0 +1,1 @@
+# nostrcheck.me-api

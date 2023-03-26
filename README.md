@@ -1,9 +1,8 @@
-# nostrcheck.me public Rest API
+# nostrcheck.me Rest API
 
+This document describes how to connect and interact with the [nostrcheck.me](http://nostrcheck.me/) public Rest API.
 
-# Public gallery 
-
-This document describes how to connect and interact with the [nostrcheck.me](http://nostrcheck.me/) public gallery Rest API.
+## Public gallery
 
 ## Connection
 
@@ -21,7 +20,7 @@ The POST request sent by the remote server requires this fields:
 | --- | --- |
 | apikey | string |
 | publicgallery | file |
-| type (optional) | string |
+| type | string |
 
 ## Apikey
 
@@ -144,4 +143,4 @@ Example:
 34917061677595387.webp
 ```
 
-Version 0.4.1 17032022
+Version 0.4.2 26032022

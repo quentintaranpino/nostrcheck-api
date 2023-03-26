@@ -2,14 +2,14 @@
 
 /**
  *
- * @About:      Media api for uploads
+ * @About:      Media api for uploads (for testing purposes)
  * @File:       media.php
  * @Date:       26032023
- * @Version:    0.4.2
+ * @Version:    0.4.3
  *
  */
 
-//Set test to false !important. This is for testing purposes only
+//Set test to true !important. This is for testing purposes only
 $test = false;
 
 //Allow CORS
@@ -31,7 +31,7 @@ require  __DIR__ . '../../helper/transform.php';
 require  __DIR__ . '../../helper/tokenbucket.php';
 
 //Token bucket database prepare
-$db = new PDO('mysql:host=' & $DATABASE_HOST & ';dbname=' & $DATABASE_NAME, $DATABASE_USER, $DATABASE_PASS);
+$db = new PDO('mysql:host='.$DATABASE_HOST.';dbname='.$DATABASE_NAME,  $DATABASE_USER, $DATABASE_PASS);
 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $storage = new TokenBucketStoragePDOMySQL($db, 'token_bucket');
@@ -199,9 +199,17 @@ if(file_exists($targetdir . $newfilename) && $uploadtype === "media") //If file 
 }
 
 //Compress size and move the image to target directory
-$compressedImage = compressFile($tempPath, $targetdir . $newfilename, 60, $test	); 
+$compressedImage = compressFile($tempPath, $targetdir . $newfilename, 60, $test); 
 		
 if($compressedImage){ 
+
+	//If test is true we don't write to database
+	if($test === true)
+	{
+		unlink($tempPath); 
+		echo json_encode(array("apikey" => $remoteapikey, "request" => $remoteipaddr, "filesize" => $fileSize, "message" => "test ok", "status" => true, "type" => $uploadtype));
+		exit();
+	}
 
 	//If the media has been compressed and moved to target directory we write new row to table userfiles
 	$db = new DbConnect();

@@ -9,7 +9,7 @@
  *
  */
 
-//Set test to true !important. This is for testing purposes only
+//This is for testing purposes only
 $test = false;
 
 //Allow CORS

@@ -132,7 +132,7 @@ If the file has been successfully uploaded, the server will also return the "URL
 
 These are the requirements for a file to be uploaded and processed by the API.
 
-| Max filesize | 4 MB |
+| Max filesize | 100 MB |
 | --- | --- |
 | Max request | 5 per day (public apikey) |
 | Filetypes | jpg, jpeg, gif, png, webp, mp3, mp4, webm, mpeg, mov |
@@ -144,10 +144,15 @@ All jpg, jpeg and png image **files will be compressed and ~~converted to webp~~
 (150323) ***Until Damus or other clients correctly implement the visualization in webp, the files will be compressed in jpg.***
 
 All animated GIF's are converted to MP4 (with loop). 
+
 All static GIF's are converted to JPG.
+
 All videos are converted to MP4.
-Avatar files are resized to 600px (width)
-Banner files are resized to 800px (width)
+
+Avatar files are resized to 600px (width).
+
+Banner files are resized to 800px (width).
+
 All pictures bigger than 1250px are resized.
 
 Example:

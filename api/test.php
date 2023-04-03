@@ -4,8 +4,8 @@
  *
  * @About:      Media api for uploads (for testing purposes)
  * @File:       test.php
- * @Date:       26032023
- * @Version:    0.4.3
+ * @Date:       03042023
+ * @Version:    0.5.0
  *
  */
 
@@ -134,14 +134,14 @@ $mime_extension = [
 	'image/png'       => 'jpg', //change for webp when will supported by clients
 	'image/jpg'       => 'jpg', //change for webp when will supported by clients
 	'image/jpeg'      => 'jpg', //change for webp when will supported by clients
-	'image/gif'       => 'gif',
+	'image/gif'       => 'gif', //gifs are transformed to jpg or mp4 in transform class
 	'image/webp'      => 'jpg', //change for webp when will supported by clients
-	'video/mp4'       => 'mp4',
-	'video/quicktime' => 'mov',
-	'video/mpeg'      => 'mpeg',
-	'video/webm'      => 'webm',
-	'audio/mpeg'      => 'mp3',
-	'audio/mpg'       => 'mp3',
+	'video/mp4'       => 'mp4', //we change to mp4 for max compatibility
+	'video/quicktime' => 'mp4', //we change to mp4 for max compatibility
+	'video/mpeg'      => 'mp4', //we change to mp4 for max compatibility
+	'video/webm'      => 'mp4', //we change to mp4 for max compatibility
+	'audio/mpeg'      => 'mp3', 
+	'audio/mpg'       => 'mp3', 
 	'audio/mpeg3'     => 'mp3',
 	'audio/mp3'       => 'mp3'
 ];
@@ -199,9 +199,15 @@ if(file_exists($targetdir . $newfilename) && $uploadtype === "media") //If file 
 }
 
 //Compress size and move the image to target directory
-$compressedImage = compressFile($tempPath, $targetdir . $newfilename, 60, $test); 
+if(empty($uploadtype) || $uploadtype === "media"){
+	$newmedia = mediatransform($tempPath, $targetdir, $newfilename, 70, $test); //General media has a default max with of 1250px
+}else if ($uploadtype === "avatar"){
+	$newmedia = mediatransform($tempPath, $targetdir, $newfilename, 70, $test, '600'); //If is an avatar max width 600px
+}else if ($uploadtype === "banner"){
+	$newmedia = mediatransform($tempPath, $targetdir, $newfilename, 70, $test, '800'); //If is a banner max width 900px
+}
 		
-if($compressedImage){ 
+if($newmedia){ 
 
 	//If test is true we don't write to database
 	if($test === true)
@@ -215,7 +221,7 @@ if($compressedImage){
 	$db = new DbConnect();
 	$con = $db->connect();
 	$stmt = $con->prepare("INSERT INTO userfiles (id, username, filename, public, date, remotehash, comments) VALUES (?, ?, ?, ?, ?, ?, ?)");
-	$stmt->bind_param('sssssss', $val_id, $username, $newfilename, $val_public, $val_date, $remoteipaddr, $val_comments);
+	$stmt->bind_param('sssssss', $val_id, $username, $newmedia, $val_public, $val_date, $remoteipaddr, $val_comments);
 	$val_id = '0';
 	$val_public = true;
 	$val_date = date("Y-m-d H:i:s");
@@ -227,11 +233,11 @@ if($compressedImage){
 	if($result)
 	{
 		unlink($tempPath); 
-		echo json_encode(array("apikey" => $remoteapikey, "request" => $remoteipaddr, "filesize" => $fileSize,"message" => "image uploaded successfully", "status" => true, "type" => $uploadtype, "URL" => $fileURL));
+		echo json_encode(array("apikey" => $remoteapikey, "request" => $remoteipaddr, "filesize" => $fileSize,"message" => "Media uploaded successfully", "status" => true, "type" => $uploadtype, "URL" => $fileURL));
 		exit();
 	}else{
 		unlink($tempPath); 
-		unlink($targetdir . $newfilename); // If we can't insert into DB we delete the file.
+		unlink($targetdir . $newmedia); // If we can't insert into DB we delete the file.
 		echo json_encode(array("apikey" => $remoteapikey, "request" => $remoteipaddr, "filesize" => $fileSize,"message" => "it was a problem processing this file", "status" => false, "type" => $uploadtype, "URL" => $fileURL));
 		exit();
 	}

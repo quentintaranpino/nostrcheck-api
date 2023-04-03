@@ -143,10 +143,17 @@ All jpg, jpeg and png image **files will be compressed and ~~converted to webp~~
 
 (150323) ***Until Damus or other clients correctly implement the visualization in webp, the files will be compressed in jpg.***
 
+All animated GIF's are converted to MP4 (with loop). 
+All static GIF's are converted to JPG.
+All videos are converted to MP4.
+Avatar files are resized to 600px (width)
+Banner files are resized to 800px (width)
+All pictures bigger than 1250px are resized.
+
 Example:
 
 ```bash
 34917061677595387.webp
 ```
 
-Version 0.4.2 26032022
+Version 0.5.0 03042022

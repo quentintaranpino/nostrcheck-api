@@ -141,9 +141,7 @@ These are the requirements for a file to be uploaded and processed by the API.
 
 ## File processing
 
-All jpg, jpeg and png image **files will be compressed and ~~converted to webp~~**. Also, the resulting filename will be a random number between (100000000000000000 and 999999999999999999) + time(). 
-
-(150323) ***Until Damus or other clients correctly implement the visualization in webp, the files will be compressed in jpg.***
+All jpg, jpeg and png image **files will be compressed and converted to webp**. Also, the resulting filename will be a random number between (100000000000000000 and 999999999999999999) + time(). 
 
 All animated GIF's are converted to MP4 (with loop). 
 

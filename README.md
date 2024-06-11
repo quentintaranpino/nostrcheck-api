@@ -1,8 +1,10 @@
+# **This API is **deprecated**, you must use the new nostrcheck-server version ->** [nostrcheck-server](https://github.com/quentintaranpino/nostrcheck-api-ts)   
+
+
 # nostrcheck.me Rest API v0
 
 This document describes how to connect and interact with the [nostrcheck.me](http://nostrcheck.me/) public Rest API v0.
 
-**This API is **deprecated**, you must use the new v1 version ->** [nostrcheck.me v1 API](https://github.com/quentintaranpino/nostrcheck-api-ts)   
 
 ## Public gallery
 
